@@ -32,7 +32,7 @@ This allows the model to capture meaningful semantic information in the embeddin
 
 1. clone the repo 
     ```
-    git clone https://github.com/MazinSherif-E/Discussion.git
+    git clone https://github.com/MazinSherif-E/Self-supervised-Contrastive-Learning
     ```
 2. install all requirments :
     ```
