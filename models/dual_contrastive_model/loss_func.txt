@@ -1,0 +1,21 @@
+CELoss (Cross-Entropy Loss)
+
+	-This class encapsulates the standard cross-entropy loss used in classification tasks.
+	-In the forward method, it computes the loss between the predictions (outputs['predicts']) and the true labels (targets).
+
+
+- SupConLoss (Supervised Contrastive Loss)
+
+	- This class implements a form of contrastive loss used in supervised learning scenarios.
+	- The constructor takes parameters alpha and temp (temperature), which are hyperparameters for scaling the loss.
+	- The nt_xent_loss (normalized temperature-scaled cross-entropy loss) method computes the contrastive loss. This involves calculating similarities between anchor and target embeddings and applying a temperature scaling. The mask is used to identify positive pairs (samples with the same label).
+	- The forward method combines the cross-entropy loss with the contrastive loss, weighted by the alpha parameter.
+
+- DualLoss
+
+	- This class extends SupConLoss and modifies the contrastive loss calculation.
+In addition to the features (cls_feats) used in SupConLoss, it also considers label_feats, which are presumably embeddings or features for each label.
+	- The forward method computes the cross-entropy loss and two variants of contrastive loss: one between the class features and label features (cl_loss_1) and the other between label features and class features (cl_loss_2), each weighted by 0.5 * alpha.
+	- The contrastive losses are calculated by considering the features corresponding to the true labels (normed_pos_label_feats), which are used as anchors for the contrastive loss against the class features.
+
+In summary, these custom loss classes provide different ways to compute the loss for a model, combining the standard cross-entropy loss with different forms of contrastive loss. These are advanced techniques typically used in scenarios where enhancing feature discriminability and learning from relative differences between samples (as opposed to absolute label predictions) is beneficial, such as in certain types of classification and representation learning tasks.
